@@ -24,6 +24,7 @@ const Resultados = () => {
   };
 
   const resistencia = calculaResistencia();
+  const resistenciaToneladas = (resistencia / 10).toFixed(2); // Convertendo kN para toneladas
   
   const dadosGrafico = [
     {
@@ -60,12 +61,19 @@ const Resultados = () => {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Resistência Calculada</h2>
-              <div className="text-3xl font-bold text-primary">
-                {resistencia.toFixed(2)} kN
+              <div className="space-y-4">
+                <div>
+                  <div className="text-3xl font-bold text-primary">
+                    {resistenciaToneladas} ton
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    ({resistencia.toFixed(2)} kN)
+                  </p>
+                </div>
+                <p className="text-gray-600">
+                  Conforme NBR 6118:2014
+                </p>
               </div>
-              <p className="text-gray-600 mt-2">
-                Conforme NBR 6118:2014
-              </p>
             </div>
           </div>
 
