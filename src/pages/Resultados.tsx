@@ -9,11 +9,16 @@ const Resultados = () => {
   const navigate = useNavigate();
   const formData = location.state;
 
+  // Constantes conforme NBR 6118:2014
+  const FATOR_SEGURANCA_CONCRETO = 1.4; // γc = 1,4 para combinações normais
+  const FATOR_SEGURANCA_ACO = 1.15; // γs = 1,15 para combinações normais
+
   // Simulação de cálculos (substitua com suas fórmulas reais)
   const calculaResistencia = () => {
     const fck = parseFloat(formData.fck);
     const area = parseFloat(formData.largura) * parseFloat(formData.altura);
-    return (fck * area * 0.85) / 10; // Valor em kN
+    const fcd = fck / FATOR_SEGURANCA_CONCRETO; // Resistência de cálculo do concreto
+    return (fcd * area * 0.85) / 10; // Valor em kN
   };
 
   const calculaAreaAco = () => {
@@ -29,11 +34,11 @@ const Resultados = () => {
   const dadosGrafico = [
     {
       nome: "Resistência Característica",
-      valor: resistencia,
+      valor: resistencia * FATOR_SEGURANCA_CONCRETO,
     },
     {
       nome: "Resistência de Projeto",
-      valor: resistencia * 0.85,
+      valor: resistencia,
     },
   ];
 
@@ -70,9 +75,15 @@ const Resultados = () => {
                     ({resistencia.toFixed(2)} kN)
                   </p>
                 </div>
-                <p className="text-gray-600">
-                  Conforme NBR 6118:2014
-                </p>
+                <div className="space-y-2">
+                  <p className="text-gray-600">
+                    Conforme NBR 6118:2014
+                  </p>
+                  <div className="text-sm text-gray-500">
+                    <p>Fator de Segurança do Concreto (γc): {FATOR_SEGURANCA_CONCRETO}</p>
+                    <p>Fator de Segurança do Aço (γs): {FATOR_SEGURANCA_ACO}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
