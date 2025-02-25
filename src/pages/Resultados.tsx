@@ -16,6 +16,13 @@ const Resultados = () => {
     return (fck * area * 0.85) / 10; // Valor em kN
   };
 
+  const calculaAreaAco = () => {
+    const diametro = parseFloat(formData.diametroAco);
+    const qtdBarras = parseFloat(formData.qtdBarras);
+    const areaUnitaria = Math.PI * Math.pow(diametro/2, 2);
+    return (areaUnitaria * qtdBarras).toFixed(2);
+  };
+
   const resistencia = calculaResistencia();
   
   const dadosGrafico = [
@@ -45,6 +52,9 @@ const Resultados = () => {
                 <p>Comprimento: {formData.comprimento} m</p>
                 <p>FCK: {formData.fck} MPa</p>
                 <p>Tipo de Aço: {formData.tipoAco}</p>
+                <p>Diâmetro do Aço: {formData.diametroAco} mm</p>
+                <p>Quantidade de Barras: {formData.qtdBarras}</p>
+                <p>Área Total de Aço: {calculaAreaAco()} mm²</p>
               </div>
             </div>
 

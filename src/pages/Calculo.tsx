@@ -15,6 +15,8 @@ const Calculo = () => {
     comprimento: "",
     fck: "",
     tipoAco: "",
+    qtdBarras: "",
+    diametroAco: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -94,7 +96,7 @@ const Calculo = () => {
                 </Select>
               </div>
 
-              <div className="space-y-2 md:col-span-2">
+              <div className="space-y-2">
                 <Label htmlFor="tipoAco">Tipo de Aço</Label>
                 <Select
                   onValueChange={(value) =>
@@ -108,6 +110,51 @@ const Calculo = () => {
                     <SelectItem value="CA25">CA-25</SelectItem>
                     <SelectItem value="CA50">CA-50</SelectItem>
                     <SelectItem value="CA60">CA-60</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="diametroAco">Diâmetro do Aço (mm)</Label>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, diametroAco: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione o diâmetro" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="5">5.0 mm</SelectItem>
+                    <SelectItem value="6.3">6.3 mm</SelectItem>
+                    <SelectItem value="8">8.0 mm</SelectItem>
+                    <SelectItem value="10">10.0 mm</SelectItem>
+                    <SelectItem value="12.5">12.5 mm</SelectItem>
+                    <SelectItem value="16">16.0 mm</SelectItem>
+                    <SelectItem value="20">20.0 mm</SelectItem>
+                    <SelectItem value="25">25.0 mm</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="qtdBarras">Quantidade de Barras</Label>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, qtdBarras: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione a quantidade" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="4">4 barras</SelectItem>
+                    <SelectItem value="6">6 barras</SelectItem>
+                    <SelectItem value="8">8 barras</SelectItem>
+                    <SelectItem value="10">10 barras</SelectItem>
+                    <SelectItem value="12">12 barras</SelectItem>
+                    <SelectItem value="14">14 barras</SelectItem>
+                    <SelectItem value="16">16 barras</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
